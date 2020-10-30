@@ -3,21 +3,21 @@ services:
   - docker
 
 before_install:
-  - docker build -t s4bb4n/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t sabinoana/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true s4bb4n/react-test npm test
+  - docker run -e CI=true sabinoana/react-test npm test
 
 
 after_success:
-  - docker build -t s4bb4n/multi-client ./client
-  - docker build -t s4bb4n/multi-nginx ./nginx
-  - docker build -t s4bb4n/multi-server ./server  
-  - docker build -t s4bb4n/multi-worker ./worker
+  - docker build -t sabinoana/multi-client ./client
+  - docker build -t sabinoana/multi-nginx ./nginx
+  - docker build -t sabinoana/multi-server ./server  
+  - docker build -t sabinoana/multi-worker ./worker
   # Login in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # push images docker hub
-  - docker push s4bb4n/multi-client
-  - docker push s4bb4n/multi-nginx
-  - docker push s4bb4n/multi-server  
-  - docker push s4bb4n/multi-worker 
+  - docker push sabinoana/multi-client
+  - docker push sabinoana/multi-nginx
+  - docker push sabinoana/multi-server  
+  - docker push sabinoana/multi-worker 
