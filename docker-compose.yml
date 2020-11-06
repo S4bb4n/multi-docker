@@ -13,7 +13,7 @@ services:
       context: ./server
     volumes:
       - /app/node_modules
-      - /d/Training/k8s/docker/section8/complex/server:/app
+      - ./server:/app
     environment:
       - REDIS_HOST=redis
       - REDI_PORT=6379
@@ -29,14 +29,14 @@ services:
       context: ./client
     volumes:
       - /app/node_modules
-      - /d/Training/k8s/docker/section8/complex/client:/app
+      - ./client:/app
   worker:
     build:
       dockerfile: Dockerfile.dev
       context: ./worker
     volumes:
       - /app/node_modules
-      - /d/Training/k8s/docker/section8/complex/worker:/app
+      - ./worker:/app
     environment:
       - REDIS_HOST=redis
       - REDIS_PORT=6379    
